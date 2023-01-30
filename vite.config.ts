@@ -2,7 +2,6 @@ import { fileURLToPath, URL } from "node:url";
 import path from "node:path";
 
 import { defineConfig } from "vite";
-import sourcemaps from "rollup-plugin-sourcemaps";
 import replace from "@rollup/plugin-replace";
 import vue from "@vitejs/plugin-vue";
 
@@ -10,10 +9,6 @@ import vue from "@vitejs/plugin-vue";
 export default defineConfig({
   plugins: [
     vue(),
-    sourcemaps({
-      // Excluding Sentry as it has broken source maps that break the build
-      exclude: ["**/@sentry/**"],
-    }),
     replace({
       values: {
         __modulename: (id) => {
